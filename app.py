@@ -20,13 +20,18 @@ st.write("""
 
 df = pd.read_csv('vehicles_us.csv')
 
-columns_to_replace = ['model_year', 'cylinders' , 'odometer', 'paint_color', 'is_4wd']
+columns_to_replace = ['model_year', 'cylinders' , 'odometer', 'is_4wd']
 for column in columns_to_replace:
+    print(column)
+    df[column] = df[column].fillna(0)
+    print('missing values in ', column, 'are replaced')
+    
+another_column_to_replace = ['paint_color']
+for column in another_column_to_replace:
     print(column)
     df[column] = df[column].fillna('unknown')
     print('missing values in ', column, 'are replaced')
 st.table(df.head())
-
 
 df.insert(0, 'id', range(0, 0 + len(df)))
 
