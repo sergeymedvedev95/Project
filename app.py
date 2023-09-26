@@ -18,7 +18,7 @@ st.write("""
 #### Table of data
 """)
 
-df = pd.read_csv('/Users/sergeymedvedev/Downloads/vehicles_us.csv')
+df = pd.read_csv('vehicles_us.csv')
 
 columns_to_replace = ['model_year', 'cylinders' , 'odometer', 'paint_color', 'is_4wd']
 for column in columns_to_replace:
