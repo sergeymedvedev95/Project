@@ -45,7 +45,7 @@ st.write("""
 ### Histogram of various consition of vehicles
 """)
 
-hist = px.histogram(df, x='condition', color = 'type')
+hist = px.histogram(df, x='type', color = 'type').update_xaxes(categoryorder = 'total descending')
 st.plotly_chart(hist)
 
 
@@ -57,25 +57,18 @@ pie = px.pie(grouped_cars, values=grouped_cars.id, names=grouped_cars.type)
 st.plotly_chart(pie)
 
 st.write("""
-### Scatterplot of a price againt model year of vehicles, represented by different types of cars 
+### Scatterplot of various models of vehicles against their prices, represented by different types of cars 
 """)
 
-fig = px.scatter(df, x='model_year', y='price', color='type')
-st.plotly_chart(fig)
-
-fig = px.scatter(df, x='model_year', y='price', color='type',
-                 labels={
-                     'model_year' : 'year',
-                     'price' : 'price'
-                 },
-                 title ='Prices of vehicles based on their year')
+# Scatter plot
+fig = px.scatter(df, x='model', y='price', color='type')
 st.plotly_chart(fig)
 
 st.write("""
-### Scatterplot of a price againt model year of vehicles, represented by different conditions of cars 
+### Scatterplot of various models of vehicles against their prices, represented by different conditions of cars 
 """)
 
-fig_1 = px.scatter(df, x='model_year', y='price', color='condition')
+fig_1 = px.scatter(df, x='model', y='price', color='condition')
 st.plotly_chart(fig_1)
 
 
@@ -91,12 +84,12 @@ st.write("""
 ### Scatterplot with filtered data
 """)
 
-fig_2 = px.scatter(filtered_type, x='model_year', y='price', color='condition')
+fig_2 = px.scatter(filtered_type, x='model', y='price', color='condition')
 st.plotly_chart(fig_2)
 
 st.write("""
 ### Histogram with filtered data
 """)
-hist_filt = px.histogram(filtered_type, x='condition')
+hist_filt = px.histogram(filtered_type, x='condition', color='cylinders').update_xaxes(categoryorder = 'total descending')
 st.plotly_chart(hist_filt)
 
