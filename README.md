@@ -18,14 +18,14 @@ Throughout this project, three modules/libraries were used
 # Exploratory Data Analysis
 The main directory contains a folder called: 'notebooks'. Inside that folder there is a file called 'EDA.ipynb' with exploratory data analysis of a given data:
 
-Information about dataset
-Checking for empty data
-Fixing emptly data
-Checking for duplicates
-average price for bodytype
-Pie chart 
-Histogram
-2 scatterplots
+- Information about dataset
+- Checking for empty data
+- Fixing emptly data
+- Checking for duplicates
+- average price for bodytype
+- Pie chart 
+- Histogram
+- 2 scatterplots
 
 # File App.py includes:
 
