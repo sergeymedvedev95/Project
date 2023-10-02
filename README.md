@@ -4,7 +4,7 @@ This is my project for the Sprint 6
 The project for this sprint is to make an application, a tool to simulate random events, and the methods and libraries used to implement it.
 
 # URL of my App on Render: 
-placeholder
+https://project-hrm2.onrender.com
 
 # Application used:
 I was using two application for making the online application - Visual Code in order to create Jupyter Notebook and Spyder through Anaconda Navigator for writing actual code. 
