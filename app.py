@@ -42,7 +42,7 @@ grouped_cars = df.groupby('type')['id'].nunique().reset_index()
 st.table(grouped_cars)
 
 st.write("""
-### Histogram of various consition of vehicles
+### Histogram of popularity of different types of vehicles
 """)
 
 hist = px.histogram(df, x='type', color = 'type').update_xaxes(categoryorder = 'total descending')
