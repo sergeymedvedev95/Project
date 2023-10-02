@@ -63,6 +63,14 @@ st.write("""
 fig = px.scatter(df, x='model_year', y='price', color='type')
 st.plotly_chart(fig)
 
+fig = px.scatter(df, x='model_year', y='price', color='type',
+                 labels={
+                     'model_year' : 'year',
+                     'price' : 'price'
+                 },
+                 title ='Prices of vehicles based on their year')
+st.plotly_chart(fig)
+
 st.write("""
 ### Scatterplot of a price againt model year of vehicles, represented by different conditions of cars 
 """)
