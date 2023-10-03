@@ -47,7 +47,9 @@ st.write("""
 ### Histogram of popularity of different types of vehicles
 """)
 
-hist = px.histogram(df, x='type', color = 'type').update_xaxes(categoryorder = 'total descending')
+hist = px.histogram(df, x='type', color = 'type'
+                   labels={
+                     'type' : 'Type'}).update_xaxes(categoryorder = 'total descending')
 st.plotly_chart(hist)
 
 
@@ -96,9 +98,9 @@ st.write("""
 ### Scatterplot with filtered data
 """)
 
-fig_2 = px.scatter(filtered_type, x='model', y='price', color='type',
+fig_2 = px.scatter(filtered_type, x='model_year', y='price', color='type',
                   labels={
-                     'model' : 'Model',
+                     'model_year' : 'Model',
                      'price' : 'Price',
                      'type' : 'Type'
                  })
