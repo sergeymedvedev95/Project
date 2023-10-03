@@ -20,9 +20,9 @@ The main directory contains a folder called: 'notebooks'. Inside that folder the
 
 - Information about dataset
 - Checking for empty data
-- Fixing emptly data
+- Fixing empty data
 - Checking for duplicates
-- average price for bodytype
+- Getting an average price for bodytype
 - Pie chart 
 - Histogram
 - 2 scatterplots
