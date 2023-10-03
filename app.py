@@ -47,8 +47,8 @@ st.write("""
 ### Histogram of popularity of different types of vehicles
 """)
 
-hist = px.histogram(df, x='type', color = 'type'
-                   labels={
+hist = px.histogram(df, x='type', color = 'type',
+                    labels={
                      'type' : 'Type'}).update_xaxes(categoryorder = 'total descending')
 st.plotly_chart(hist)
 
