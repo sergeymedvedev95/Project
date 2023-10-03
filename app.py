@@ -20,7 +20,9 @@ st.write("""
 
 df = pd.read_csv('vehicles_us.csv')
 
-columns_to_replace = ['model_year', 'cylinders' , 'odometer', 'is_4wd']
+df['model_year'] = df['model_year'].fillna(df.groupby(['model'])['model_year'].transform('median'))
+
+columns_to_replace = ['cylinders' , 'odometer', 'is_4wd']
 for column in columns_to_replace:
     print(column)
     df[column] = df[column].fillna(0)
@@ -61,14 +63,24 @@ st.write("""
 """)
 
 # Scatter plot
-fig = px.scatter(df, x='model', y='price', color='type')
+fig = px.scatter(df, x='model', y='price', color='type',
+                  labels={
+                     'model' : 'Model',
+                     'price' : 'Price',
+                     'type' : 'Type'
+                 })
 st.plotly_chart(fig)
 
 st.write("""
-### Scatterplot of various models of vehicles against their prices, represented by different conditions of cars 
+### Scatterplot of years of vehicles against their price, represented by different conditions of vehicles 
 """)
 
-fig_1 = px.scatter(df, x='model', y='price', color='condition')
+fig_1 = px.scatter(df, x='model_year', y='price', color='condition',
+                 labels={
+                     'model_year' : 'Year',
+                     'price' : 'Price',
+                     'condition' : 'Condition'
+                 })
 st.plotly_chart(fig_1)
 
 
@@ -84,7 +96,12 @@ st.write("""
 ### Scatterplot with filtered data
 """)
 
-fig_2 = px.scatter(filtered_type, x='model', y='price', color='condition')
+fig_2 = px.scatter(filtered_type, x='model', y='price', color='type',
+                  labels={
+                     'model' : 'Model',
+                     'price' : 'Price',
+                     'type' : 'Type'
+                 })
 st.plotly_chart(fig_2)
 
 st.write("""
