@@ -12,7 +12,7 @@ import plotly_express as px
 
 st.header('Sergey Medvedev Sprint 6 Project')
 
-df = pd.read_csv('/Users/sergeymedvedev/Downloads/vehicles_us.csv')
+df = pd.read_csv('vehicles_us.csv')
 
 df['model_year'] = df['model_year'].fillna(df.groupby(['model'])['model_year'].transform('median'))
 
