@@ -131,18 +131,18 @@ st.write("""
 
 fig_2 = px.scatter(filtered_data, x='model_year', y='price', color='type',
                   labels={
-                     'model_year' : 'Model',
+                     'model_year' : 'Year',
                      'price' : 'Price',
                      'type' : 'Type'
                  })
-show_scatter_plot2 = st.checkbox('Show scatterplot of prices against year of vehicles filtered by type of vehicle')
+show_scatter_plot2 = st.checkbox('Show scatterplot of prices against year of vehicles manufactured')
 if show_scatter_plot2:
     st.plotly_chart(fig_2)
 
 st.write("""
 ### Histogram with filtered data
 """)
-hist_filt = px.bar(filtered_data, x=filtered_data.model, y=filtered_data.type, color= 'condition').update_xaxes(categoryorder = 'total descending')
-show_histogram = st.checkbox('Show histogram of different models of vehicles based on the amount of cylinders, differentiated by vehicle condition')
+hist_filt = px.bar(filtered_data, x=filtered_data.price, y=filtered_data.type, color= 'condition').update_xaxes(categoryorder = 'total descending')
+show_histogram = st.checkbox('Show histogram of prices of vehicles against their types')
 if show_histogram:
     st.plotly_chart(hist_filt)
