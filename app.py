@@ -59,7 +59,6 @@ st.write("""
 
 histogram = px.bar(grouped_cars_sorted, x=grouped_cars_sorted.type, y=grouped_cars_sorted.model)
 histogram.update_layout(title="<b> Popularity of the bodystyle")
-show_histogram_bodystyle = st.checkbox('Show the histogram of popularity of the bodystyle')
 st.plotly_chart(histogram)
 
 st.write("""
