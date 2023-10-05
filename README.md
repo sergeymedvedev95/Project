@@ -35,7 +35,8 @@ The main directory contains a folder called: 'notebooks'. Inside that folder the
 - px.bar(df, x='x', y='y') - Creates a histogram
 - st.plotly_chart() - Displays an interactive Plotly chart
 - px.scatter(df, x='x', y='y', color='color') - Creates scatter plot
-- st.checkbox() - Allows for a filter data
+- st.slider() - Allows for choosing a range of values
+- st.selectbox - Allows for choosing a specific value 
 
 
 # Code itself consists of: 
@@ -44,9 +45,9 @@ The main directory contains a folder called: 'notebooks'. Inside that folder the
 - Several tables
 - Histogram
 - 2 scatterplots
-- A filtering option
-- Scatterplot that will work with an above filter
-- Histogram that will work with an above filter
+- 2 filtering options
+- Scatterplot that will work with above filters
+- Histogram that will work with above filters
 
 # Running a file locally
 In order to be able to use it, all you need to do is to run 'app.py' file in any app that can run python code. After that, you will receive the message in the console of that app you chose 'streamlit run /Users/username/Downloads/app.py'
