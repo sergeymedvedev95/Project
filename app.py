@@ -98,15 +98,38 @@ st.write("""
 ## Block with Filtered Data - Filter on the left side on the screen works only with following two charts
 """)
 
-rest_type = df['type'].unique()
-make_choice = st.sidebar.selectbox('Select type of vehicle:', rest_type)
-filtered_type = df[df.type==make_choice]
+price_range = st.slider(
+     "What is your price range?",
+     value=(0, 375000))
+
+actual_range=list(range(price_range[0],price_range[1]+1))
+
+option = st.selectbox(
+    'How many cylinders do you prefer',
+    ('6','8', '10', '12'))
+st.write('You selected:', option)
+
+
+if option == '6':
+    filtered_data=df[df.price.isin(actual_range)]
+    filtered_data=filtered_data[df.cylinders == 6]
+elif option == '8':
+    filtered_data=df[df.price.isin(actual_range)]
+    filtered_data=filtered_data[df.cylinders == 8]
+elif option == '10':
+    filtered_data=df[df.price.isin(actual_range)]
+    filtered_data=filtered_data[df.cylinders == 10]
+elif option == '12':
+    filtered_data=df[df.price.isin(actual_range)]
+    filtered_data=filtered_data[df.cylinders == 12]
+else:
+    filtered_data=df[df.price.isin(actual_range)]
 
 st.write("""
 ### Scatterplot with filtered data
 """)
 
-fig_2 = px.scatter(filtered_type, x='model_year', y='price', color='type',
+fig_2 = px.scatter(filtered_data, x='model_year', y='price', color='type',
                   labels={
                      'model_year' : 'Model',
                      'price' : 'Price',
@@ -119,7 +142,7 @@ if show_scatter_plot2:
 st.write("""
 ### Histogram with filtered data
 """)
-hist_filt = px.bar(filtered_type, x=filtered_type.model, y=filtered_type.cylinders, color= 'condition').update_xaxes(categoryorder = 'total descending')
+hist_filt = px.bar(filtered_data, x=filtered_data.model, y=filtered_data.type, color= 'condition').update_xaxes(categoryorder = 'total descending')
 show_histogram = st.checkbox('Show histogram of different models of vehicles based on the amount of cylinders, differentiated by vehicle condition')
 if show_histogram:
     st.plotly_chart(hist_filt)
