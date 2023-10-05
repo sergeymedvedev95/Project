@@ -12,7 +12,7 @@ import plotly_express as px
 
 st.header('Sergey Medvedev Sprint 6 Project')
 
-df = pd.read_csv('vehicles_us.csv')
+df = pd.read_csv('/Users/sergeymedvedev/Downloads/vehicles_us.csv')
 
 df['model_year'] = df['model_year'].fillna(df.groupby(['model'])['model_year'].transform('median'))
 
@@ -61,9 +61,11 @@ histogram = px.bar(grouped_cars_sorted, x=grouped_cars_sorted.type, y=grouped_ca
 histogram.update_layout(title="<b> Popularity of the bodystyle")
 st.plotly_chart(histogram)
 
+
 st.write("""
 ### Scatterplot of various models of vehicles against their prices, represented by different types of cars 
 """)
+
 
 # Scatter plot
 fig = px.scatter(df, x='model', y='price', color='type',
@@ -87,7 +89,7 @@ fig_1 = px.scatter(df, x='model_year', y='price', color='condition',
 st.plotly_chart(fig_1)
 
 st.write("""
-## Block with Filtered Data - Filter on the left side on the screen works only with following two charts
+## Block with Filtered Data - Filters will work on the graphs below
 """)
 
 price_range = st.slider(
