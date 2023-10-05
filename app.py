@@ -59,9 +59,7 @@ st.write("""
 
 histogram = px.bar(grouped_cars_sorted, x=grouped_cars_sorted.type, y=grouped_cars_sorted.model)
 histogram.update_layout(title="<b> Popularity of the bodystyle")
-show_histogram_bodystyle = st.checkbox('Show the histogram of popularity of the bodystyle')
-if show_histogram_bodystyle :
-    st.plotly_chart(histogram)
+st.plotly_chart(histogram)
 
 
 st.write("""
@@ -76,9 +74,7 @@ fig = px.scatter(df, x='model', y='price', color='type',
                      'price' : 'Price',
                      'type' : 'Type'
                  })
-show_scatter_plot = st.checkbox('Show scatter plot of model of vehicles against price')
-if show_scatter_plot :
-    st.plotly_chart(fig)
+st.plotly_chart(fig)
 
 st.write("""
 ### Scatterplot of years of vehicles against their price, represented by different conditions of vehicles 
@@ -90,9 +86,7 @@ fig_1 = px.scatter(df, x='model_year', y='price', color='condition',
                      'price' : 'Price',
                      'condition' : 'Condition'
                  })
-show_scatter_plot1 = st.checkbox('Show scatterplot of prices against year of vehicles')
-if show_scatter_plot1 :
-    st.plotly_chart(fig_1)
+st.plotly_chart(fig_1)
 
 st.write("""
 ## Block with Filtered Data - Filter on the left side on the screen works only with following two charts
@@ -112,14 +106,10 @@ fig_2 = px.scatter(filtered_type, x='model_year', y='price', color='type',
                      'price' : 'Price',
                      'type' : 'Type'
                  })
-show_scatter_plot2 = st.checkbox('Show scatterplot of prices against year of vehicles filtered by type of vehicle')
-if show_scatter_plot2:
-    st.plotly_chart(fig_2)
+st.plotly_chart(fig_2)
 
 st.write("""
 ### Histogram with filtered data
 """)
 hist_filt = px.bar(filtered_type, x=filtered_type.model, y=filtered_type.cylinders, color= 'condition').update_xaxes(categoryorder = 'total descending')
-show_histogram = st.checkbox('Show histogram of different models of vehicles based on the amount of cylinders, differentiated by vehicle condition')
-if show_histogram:
-    st.plotly_chart(hist_filt)
+st.plotly_chart(hist_filt)
