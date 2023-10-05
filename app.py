@@ -95,7 +95,7 @@ if show_scatter_plot1 :
     st.plotly_chart(fig_1)
 
 st.write("""
-## Block with Filtered Data - Filter on the left side on the screen works only with following two charts
+## Block with Filtered Data - Filters below works only with following two charts
 """)
 
 price_range = st.slider(
