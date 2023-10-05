@@ -27,69 +27,49 @@ for column in another_column_to_replace:
     print(column)
     df[column] = df[column].fillna('unknown')
     print('missing values in ', column, 'are replaced')
-
-st.header('Table of Data')
-
-show_table = st.checkbox('Show data table slice')
-if show_table :
-    st.write("""
-    ### Data table slice
-    """)
-    st.table(df.head())
+st.table(df.head())
 
 df.insert(0, 'id', range(0, 0 + len(df)))
-grouped_cars = df.groupby(['type'])['model'].nunique().reset_index()
-grouped_cars_sorted = grouped_cars.sort_values(by = 'model',ascending=False)
 
 st.write("""
-### Number of models per vehicle type shown in a descending order
+### Proportion of different types of vehicles
 """)
-show_table = st.checkbox('Show table')
-if show_table : 
-    st.write("""
-    ### Table of number of different models per type of vehicle
-    """)
-    grouped_cars = df.groupby(['type'])['model'].nunique().reset_index()
-    grouped_cars_sorted = grouped_cars.sort_values(by = 'model',ascending=False)
-    st.table(grouped_cars_sorted)
+grouped_cars = df.groupby('type')['id'].nunique().reset_index()
+st.table(grouped_cars)
 
 st.write("""
-### Histogram of popularity of different types of vehicles
+### Histogram of various consition of vehicles
 """)
 
-histogram = px.bar(grouped_cars_sorted, x=grouped_cars_sorted.type, y=grouped_cars_sorted.model)
-histogram.update_layout(title="<b> Popularity of the bodystyle")
-st.plotly_chart(histogram)
+hist = px.histogram(df, x='type', color = 'type').update_xaxes(categoryorder = 'total descending')
+st.plotly_chart(hist)
 
+
+st.write("""
+### Pie chart of the representation of different types of vehicles
+""")
+
+pie = px.pie(grouped_cars, values=grouped_cars.id, names=grouped_cars.type)
+st.plotly_chart(pie)
 
 st.write("""
 ### Scatterplot of various models of vehicles against their prices, represented by different types of cars 
 """)
 
-
 # Scatter plot
-fig = px.scatter(df, x='model', y='price', color='type',
-                  labels={
-                     'model' : 'Model',
-                     'price' : 'Price',
-                     'type' : 'Type'
-                 })
+fig = px.scatter(df, x='model', y='price', color='type')
 st.plotly_chart(fig)
 
 st.write("""
-### Scatterplot of years of vehicles against their price, represented by different conditions of vehicles 
+### Scatterplot of various models of vehicles against their prices, represented by different conditions of cars 
 """)
 
-fig_1 = px.scatter(df, x='model_year', y='price', color='condition',
-                 labels={
-                     'model_year' : 'Year',
-                     'price' : 'Price',
-                     'condition' : 'Condition'
-                 })
+fig_1 = px.scatter(df, x='model', y='price', color='condition')
 st.plotly_chart(fig_1)
 
+
 st.write("""
-## Block with Filtered Data - Filter on the left side on the screen works only with following two charts
+## Block with Filtered Data 
 """)
 
 rest_type = df['type'].unique()
@@ -100,16 +80,11 @@ st.write("""
 ### Scatterplot with filtered data
 """)
 
-fig_2 = px.scatter(filtered_type, x='model_year', y='price', color='type',
-                  labels={
-                     'model_year' : 'Model',
-                     'price' : 'Price',
-                     'type' : 'Type'
-                 })
+fig_2 = px.scatter(filtered_type, x='model', y='price', color='condition')
 st.plotly_chart(fig_2)
 
 st.write("""
 ### Histogram with filtered data
 """)
-hist_filt = px.bar(filtered_type, x=filtered_type.model, y=filtered_type.cylinders, color= 'condition').update_xaxes(categoryorder = 'total descending')
+hist_filt = px.histogram(filtered_type, x='condition', color='cylinders').update_xaxes(categoryorder = 'total descending')
 st.plotly_chart(hist_filt)
